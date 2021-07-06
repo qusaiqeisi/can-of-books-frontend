@@ -9,13 +9,13 @@ class MyFavoriteBooks extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      
-      data: ''
+      userEmail:'',
+      BookList:[]
     }
   }
   getInput = (e) => {
     this.setState({
-      data: e.target.value,
+      userEmail: e.target.value,
       
     })
     console.log(this.state.data)
@@ -24,11 +24,18 @@ class MyFavoriteBooks extends React.Component {
   
   requestData = (e) => {
     e.preventDefault()
-    let userEmail = this.state.data
+    // let userEmail = this.state.data
     
-    let axiosArray= axios.get(`http://localhost:8000/book?email=${userEmail}`).then(res => {
-      console.log(res)
+    let axiosArray= `http://localhost:8000/book?email=${this.state.userEmail}`
+    axios.get(axiosArray).then(response => {
+      console.log('new one',response.data.email);
+      this.setState({
+        BookList:response.data.arryBooks
+        
+      })
     }).catch(err => { console.log(err) })
+    console.log(typeof(axiosArray));
+    console.log('booklist',this.state.BookList);
   }
   
   
@@ -36,13 +43,20 @@ class MyFavoriteBooks extends React.Component {
     return (
       <Jumbotron>
         <div>
+          <h1>Best</h1>
           <form>
-            <input type="text" onChange={this.getInput} />
+            <input type="text" onChange={(e)=>{this.getInput(e)}} />
             <button onClick={(e) => this.requestData(e)}>submit</button>
           </form>
-          <h2>{this.state.name}</h2>
-          <h2>q</h2>
-          <h2>q</h2>
+          <ol>
+        
+          {this.state.BookList.map(book=>{
+
+          return <li>{book.name}</li>
+          })}
+
+</ol>
+          
         </div>
       </Jumbotron>
     )
