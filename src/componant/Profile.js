@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { withAuth0 } from '@auth0/auth0-react';
+import BestBooks from '../BestBooks'
 
 export class Profile extends Component {
     render() {
         return (
+            <>
             <div>
                 {
                     this.props.auth0.isAuthenticated &&
@@ -14,6 +16,10 @@ export class Profile extends Component {
                 }
 
             </div>
+            
+            <BestBooks/>
+            
+            </>
         )
     }
 }

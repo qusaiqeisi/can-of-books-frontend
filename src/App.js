@@ -12,7 +12,6 @@ import Profile from './componant/Profile'
 import Content from './componant/Content'
 import LoginButton from './componant/LoginButton'
 import LogoutButton from './componant/LogoutButton'
-import BestBooks from './BestBooks'
 
 
 export class App extends Component {
@@ -53,13 +52,14 @@ export class App extends Component {
           </Route>
           <Route path="/Login">
             <LoginButton />
+
           </Route>
           <Route path="/Logout">
             <LogoutButton />
           </Route>
         </Switch>
 
-        <BestBooks/>
+     
 
 
       </Router >
