@@ -67,45 +67,45 @@ class MyFavoriteBooks extends React.Component {
     console.log("mybook",this.state.myBook);
   }
 
-  // getName = (e) => {
-  //   e.preventDefault();
-  //   console.log('get name', e.target.value);
-  //   this.setState({
-  //     name: e.target.value
-  //   })
-  // }
-  // getDescription = (e) => {
-  //   e.preventDefault();
-  //   this.setState({
-  //     deccription: e.target.value
-  //   })
-  // }
-  // getStatus = (e) => {
-  //   e.preventDefault();
-  //   console.log('get stauts', e.target.value);
-  //   this.setState({
-  //     status: e.target.value
-  //   })
-  // }
+  getName = (e) => {
+    e.preventDefault();
+    console.log('get name', e.target.value);
+    this.setState({
+      name: e.target.value
+    })
+  }
+  getDescription = (e) => {
+    e.preventDefault();
+    this.setState({
+      description: e.target.value
+    })
+  }
+  getStatus = (e) => {
+    e.preventDefault();
+    console.log('get stauts', e.target.value);
+    this.setState({
+      status: e.target.value
+    })
+  }
 
 
-  // addBook = async (e) => {
-  //   e.preventDefault();
-  //   const { user } = this.props.auth0;
-  //   const bookData = {
-  //     name: this.state.name,
-  //     description: this.state.description,
-  //     status: this.state.status,
-  //     email: user.email
-  //   }
-  //   console.log(bookData);
-  //   const addBookURL = await axios.post(`http://localhost:8000/addbook`, bookData);
-  //   console.log(addBookURL.data);
-  //   this.setState({
-  //     myBook: addBookURL.data
-  //   })
-  //   console.log(this.state.myBook);
-  // }
+  addBook = async (e) => {
+    e.preventDefault();
+    const { user } = this.props.auth0;
+    const bookData = {
+      name: this.state.name,
+      description: this.state.description,
+      status: this.state.status,
+      email: user.email
+    }
+    console.log(bookData);
+    const addBookURL = await axios.post('http://localhost:8000/addbook', bookData);
+    console.log('amman103',addBookURL.data);
+    this.setState({
+      myBook: addBookURL.data
+    })
+    console.log('amman107',this.state.myBook);
+  }
   render() {
     return (
       <Jumbotron>
@@ -116,7 +116,7 @@ class MyFavoriteBooks extends React.Component {
             <button onClick={(e) => this.requestData(e)}>submit</button>
           </form> */}
           <div>
-            <form onSubmit={(e) => this.props.addBook(e)}>
+            <form onSubmit={(e) => this.addBook(e)}>
               <label>Name:</label>
               <input type="text" onChange={(e) => this.getName(e)}></input>
               <label>Decription:</label>
@@ -143,3 +143,5 @@ class MyFavoriteBooks extends React.Component {
 }
 
 export default withAuth0(MyFavoriteBooks)
+
+
