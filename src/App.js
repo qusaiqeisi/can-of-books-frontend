@@ -32,6 +32,7 @@ export class App extends Component {
             
             <li>
               <Link to="/profile">Profile</Link>
+              <BestBooks/>
             </li>
             </>:
             <li>
@@ -58,8 +59,9 @@ export class App extends Component {
             <LogoutButton />
           </Route>
         </Switch>
-
+        
      
+
 
 
       </Router >
